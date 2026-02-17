@@ -4,14 +4,14 @@ class Intern extends Employee {
         super(name, baseSalary, attendanceDays, performanceRating);
     }
 
-    // Gross Salary depends on attendance percentage
+
     @Override
     public double calculateGrossSalary() {
-        double attendancePercent = (attendanceDays / 30.0) * 100;
+        double attendancePercent = (getAttendanceDays()/ 30.0) * 100;
         if (attendancePercent < 70) {
-            return baseSalary - (baseSalary * 0.20); // 20% deduction if attendance < 70%
+            return getBaseSalary() - (getBaseSalary() * 0.20); // 20% deduction if attendance < 70%
         } else {
-            return baseSalary;
+            return getBaseSalary();
         }
     }
 }

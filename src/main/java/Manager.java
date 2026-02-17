@@ -6,9 +6,8 @@ public class Manager extends Employee {
         this.teamSize = teamSize;
     }
 
-    // Gross Salary = BaseSalary + (TeamSize * 1000)
     @Override
     public double calculateGrossSalary() {
-        return baseSalary + (teamSize * 1000);
+        return getBaseSalary() + (teamSize * 1000);
     }
 }

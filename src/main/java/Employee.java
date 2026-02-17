@@ -1,11 +1,22 @@
 abstract class Employee {
-    // Common attributes for all employees
-    protected String name;
-    protected double baseSalary;
-    protected int attendanceDays;
-    protected int performanceRating;
 
-    // PF is fixed for all employees
+    private String name;
+    private double baseSalary;
+    private int attendanceDays;
+    private int performanceRating;
+
+    public String getName() {
+        return name;
+    }
+
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public int getAttendanceDays() {
+        return attendanceDays;
+    }
+
     protected static final double PF_PERCENT = 0.12;
 
     public Employee(String name, double baseSalary, int attendanceDays, int performanceRating) {
@@ -15,35 +26,40 @@ abstract class Employee {
         this.performanceRating = performanceRating;
     }
 
-    // Abstract method for Gross Salary calculation (will differ for each employee type)
+    // Method for Gross Salary which is different according to employee type
     public abstract double calculateGrossSalary();
 
-    // Attendance Deduction (common for all employees)
+
     public double calculateAttendanceDeduction() {
         double dailySalary = baseSalary / 30;
         int absentDays = 30 - attendanceDays;
         return absentDays * dailySalary;
     }
 
-    // Performance Bonus Calculation (common logic, percentage differs by rating)
+
     public double calculateBonus(double grossSalary) {
         double bonusPercent = 0;
         switch (performanceRating) {
-            case 5: bonusPercent = 0.20; break;
-            case 4: bonusPercent = 0.15; break;
-            case 3: bonusPercent = 0.10; break;
-            case 2: bonusPercent = 0.05; break;
-            case 1: bonusPercent = 0.0; break;
+            case 5:
+                bonusPercent = 0.20; break;
+            case 4:
+                bonusPercent = 0.15; break;
+            case 3:
+                bonusPercent = 0.10; break;
+            case 2:
+                bonusPercent = 0.05; break;
+            case 1:
+                bonusPercent = 0.0; break;
         }
         return grossSalary * bonusPercent;
     }
 
-    // PF Deduction (common for all)
+    // calculating Pf deduction
     public double calculatePF() {
         return baseSalary * PF_PERCENT;
     }
 
-    // Tax Calculation (common slab logic)
+    // method to calculate tax
     public double calculateTax(double grossSalary, double bonus) {
         double taxableIncome = grossSalary + bonus;
         double taxRate = 0;
@@ -59,7 +75,7 @@ abstract class Employee {
         return taxableIncome * taxRate;
     }
 
-    // Net Salary Calculation
+
     public double calculateNetSalary() {
         double grossSalary = calculateGrossSalary();
         double bonus = calculateBonus(grossSalary);
@@ -70,7 +86,7 @@ abstract class Employee {
         return grossSalary + bonus - pf - attendanceDeduction - tax;
     }
 
-    // Display salary breakdown
+
     public void printSalarySlip() {
         double grossSalary = calculateGrossSalary();
         double bonus = calculateBonus(grossSalary);
@@ -86,6 +102,7 @@ abstract class Employee {
         System.out.println("Attendance Deduction: " + attendanceDeduction);
         System.out.println("Tax: " + tax);
         System.out.println("Net Salary: " + netSalary);
-        System.out.println("-----------------------------");
+        System.out.println("*****************************************");
+
     }
 }

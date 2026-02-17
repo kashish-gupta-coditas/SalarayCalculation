@@ -6,9 +6,8 @@ public class Developer extends Employee {
         this.overtimeHours = overtimeHours;
     }
 
-    // Gross Salary = BaseSalary + (OvertimeHours * 500)
     @Override
     public double calculateGrossSalary() {
-        return baseSalary + (overtimeHours * 500);
+        return getBaseSalary() + (overtimeHours * 500);
     }
 }
